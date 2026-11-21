@@ -381,7 +381,11 @@ export async function resolveImageData(
       }
 
       // Handle SVG specially
-      if (type === 'image/svg+xml' || type === 'application/svg+xml') {
+      const mediaType = type?.split(';', 1)[0].trim().toLowerCase()
+      if (
+        mediaType === 'image/svg+xml' ||
+        mediaType === 'application/svg+xml'
+      ) {
         return res.text()
       }
 
